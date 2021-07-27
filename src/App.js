@@ -9,7 +9,7 @@ import {
   ListItemText,
   Typography,
   Grid,
-  Paper
+  Paper,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import DashboardIcon from "@material-ui/icons/Dashboard";
@@ -20,12 +20,14 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import "./App.css";
 import BarChart from "./Component/BarChart";
 import LineChart from "./Component/LineChart";
+import ProductTable from './Component/ProductTable'
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
-    overflow: 'hidden',
+    maxWidth: "100vw",
+    // overflow: 'hidden',
   },
   drawer: {
     width: drawerWidth,
@@ -47,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "1.2rem",
   },
   item__heading: {
-    fontSize: "2.2rem",
+    fontSize: "1.5rem",
     fontWeight: "bolder",
   },
   item__divider: {
@@ -55,7 +57,6 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(2),
-    textAlign: 'center',
   },
 }));
 
@@ -81,54 +82,68 @@ function App() {
   ];
 
   return (
-    <div className="App">
-    <Box className={classes.root}>
-      <CssBaseline />
-      <Box>
-        <Drawer
-          className={classes.drawer}
-          variant="permanent"
-          anchor="left"
-          classes={{ paper: classes.drawerPaper }}
-        >
-          {/* list list items */}
+    // <div className="App">
+      <Box className={classes.root}>
+        <CssBaseline />
+        
+          <Drawer
+            className={classes.drawer}
+            variant="permanent"
+            anchor="left"
+            classes={{ paper: classes.drawerPaper }}
+          >
+            {/* list list items */}
 
-          <List>
-            {menuItems.map((item) => (
-              <ListItem
-                className={classes.item__listItem}
-                button
-                key={item.text}
-              >
-                <ListItemIcon className={classes.item__largeIcon}>
-                  {item.icon}
-                </ListItemIcon>
-                <ListItemText>
-                  <Typography className={classes.item__largeText}>
-                    {item.text}
-                  </Typography>
-                </ListItemText>
-              </ListItem>
-            ))}
-          </List>
-        </Drawer>
-      </Box>
-      <Box className="right" p={2}>
-        <Typography className={classes.item__heading}>Dashboard</Typography>
-        <Divider className={classes.item__divider} />
-        <Box className='chart'>
-        <Grid container spacing={2}>
-          <Grid item xs={6}>
-            <Paper className={classes.paper}><BarChart /></Paper>
+            <List>
+              {menuItems.map((item) => (
+                <ListItem
+                  className={classes.item__listItem}
+                  button
+                  key={item.text}
+                >
+                  <ListItemIcon className={classes.item__largeIcon}>
+                    {item.icon}
+                  </ListItemIcon>
+                  <ListItemText>
+                    <Typography className={classes.item__largeText}>
+                      {item.text}
+                    </Typography>
+                  </ListItemText>
+                </ListItem>
+              ))}
+            </List>
+          </Drawer>
+        
+        <Box className="right" p={3}>
+          <Typography className={classes.item__heading}>Dashboard</Typography>
+          <Divider className={classes.item__divider} />
+          <Grid container spacing={2}>
+            <Grid item xs={12} lg={6} xl={6}>
+              <Paper className={classes.paper}>
+                <BarChart />
+              </Paper>
+            </Grid>
+            <Grid item xs={12} lg={6} xl={6}>
+              <Paper className={classes.paper}>
+                <LineChart />
+              </Paper>
+            </Grid>
           </Grid>
-          <Grid item xs={6}>
-            <Paper className={classes.paper}><LineChart /></Paper>
+          <Grid container spacing={2}>
+            <Grid item xs={12} lg={4} xl={4}>
+              <Paper className={classes.paper}>
+                <ProductTable />
+              </Paper>
+            </Grid>
+            <Grid item xs={12} lg={8} xl={8}>
+              <Paper className={classes.paper}>
+                {/* <LineChart /> */}
+              </Paper>
+            </Grid>
           </Grid>
-        </Grid>
         </Box>
       </Box>
-    </Box>
-    </div>
+    // </div>
   );
 }
 export default App;
