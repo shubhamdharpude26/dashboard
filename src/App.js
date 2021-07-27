@@ -21,6 +21,7 @@ import "./App.css";
 import BarChart from "./Component/BarChart";
 import LineChart from "./Component/LineChart";
 import ProductTable from './Component/ProductTable'
+import Devices from './Component/Devices'
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -137,7 +138,7 @@ function App() {
             </Grid>
             <Grid item xs={12} lg={8} xl={8}>
               <Paper className={classes.paper}>
-                {/* <LineChart /> */}
+                <Devices />
               </Paper>
             </Grid>
           </Grid>
